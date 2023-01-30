@@ -5,7 +5,7 @@ import people from "../Assets/images/icon-person.svg";
 
 export const Calc = () => {
   return (
-    <div>
+    <div className={calcCss.calc}>
       <Bill />
       <Buttons />
       <NumOfPeople />
@@ -18,7 +18,7 @@ const Bill = () => {
     <div className={calcCss.div}>
       <p className={calcCss.p}>Bill</p>
       <div className={calcCss.inputBox}>
-        <img src={dollar} />
+        <img src={dollar} alt="dollar" />
         <input
           placeholder="Enter charge amount"
           type="number"

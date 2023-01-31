@@ -41,8 +41,8 @@
     padding: 0 16px;
     display: flex;
     align-items: center;
-    border: 1px solid gray;
     background-color: #F3F9FA;
+    margin-bottom: 24px;
 }
 
 .buttonsFlex {
@@ -71,7 +71,9 @@
     background-color: #9FE8DF;
 
 }
-.buttons > input{
+.custom{
+    width: 116px;
+    height: 48px;
     color: #00474B;
     font-family: 'Space Mono', monospace;
     font-weight: 800;

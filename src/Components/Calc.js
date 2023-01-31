@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import calcCss from "../Components/calc.module.css";
 import dollar from "../Assets/images/icon-dollar.svg";
 import people from "../Assets/images/icon-person.svg";
 import styled, { css } from "styled-components";
-import { act } from "react-dom/test-utils";
 
-export const Calc = () => {
+export const Calc = (props) => {
   return (
     <div className={calcCss.calc}>
-      <Bill />
-      <Buttons />
-      <NumOfPeople />
+      <Bill bill={props.bill} setBill={props.setBill} />
+      <Buttons
+        total={props.total}
+        setTip={props.setTip}
+        setTotal={props.setTotal}
+        setPercent={props.setPercent}
+        percent={props.percent}
+        bill={props.bill}
+      />
+      <NumOfPeople people={props.people} setPeople={props.setPeople} />
     </div>
   );
 };
 
-const Bill = () => {
+const Bill = (props) => {
   return (
     <div className={calcCss.div}>
       <p className={calcCss.p}>Bill</p>
@@ -25,6 +31,9 @@ const Bill = () => {
           placeholder="Enter charge amount"
           type="number"
           className={calcCss.input}
+          onChange={(event) => {
+            props.setBill(event.target.valueAsNumber);
+          }}
         />
       </div>
     </div>
@@ -33,15 +42,11 @@ const Bill = () => {
 
 const Buttons = (props) => {
   const [active, setActive] = useState(null);
-  const numbers = [
-    5 + "%",
-    10 + "%",
-    15 + "%",
-    25 + "%",
-    50 + "%",
-    <input type="number" placeholder="Custom" />,
-  ];
+  const numbers = [5, 10, 15, 25, 50];
 
+  useEffect(() => {
+    props.setTip((props.total / 100) * props.percent);
+  });
   const eachButton = numbers.map((num) => {
     return (
       <ButtonsDiv
@@ -49,15 +54,37 @@ const Buttons = (props) => {
         key={Math.random() * Math.random() * Math.random()}
         onClick={() => {
           setActive(num);
+          props.setPercent(num);
+          console.log(num);
         }}
         active={active === num}
       >
-        {num}
+        {num}%
       </ButtonsDiv>
     );
   });
 
   return <div className={calcCss.buttonsFlex}>{eachButton}</div>;
+};
+
+const NumOfPeople = (props) => {
+  return (
+    <div className={calcCss.div}>
+      <p className={calcCss.p}>Number of People</p>
+      <div className={calcCss.inputBox}>
+        <img src={people} alt="Person" />
+        <input
+          type="number"
+          placeholder="Enter amount of People"
+          min={1}
+          onChange={(event) => {
+            props.setPeople(event.target.valueAsNumber);
+          }}
+          className={calcCss.input}
+        />
+      </div>
+    </div>
+  );
 };
 
 const ButtonsDiv = styled.div(
@@ -93,59 +120,3 @@ const ButtonsDiv = styled.div(
     }
   `
 );
-
-//   const [active, setActive] = useState(null);
-
-//   const eachButton = numbers.map((num) => {
-//     return (
-//       <ButtonRatings
-//         value={num}
-//         key={Math.random() * Math.random() * Math.random()}
-//         onClick={() => {
-//           setActive(num);
-//         }}
-//         active={active === num}
-//       >
-//         {num}
-//       </ButtonRatings>
-//     );
-//   });
-//   return <div className={calcCss.buttonsFlex}>{eachButton}</div>;
-// };
-
-// const ButtonRatings = styled.button(
-//   (props) => css`
-//     color: white;
-//     font-size: 24px;
-//     width: 116px;
-//     height: 48px;
-//     background: #00474b;
-//     border: none;
-//     border-radius: 5px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     transition: 0.3s ease;
-//     &:hover {
-//       olor: #00474b;
-//       background-color: #9fe8df;
-//     }
-//   `
-// );
-
-const NumOfPeople = () => {
-  return (
-    <div className={calcCss.div}>
-      <p className={calcCss.p}>Number of People</p>
-      <div className={calcCss.inputBox}>
-        <img src={people} alt="Person" />
-        <input
-          type="number`"
-          placeholder="Enter amount of People"
-          min={1}
-          className={calcCss.input}
-        />
-      </div>
-    </div>
-  );
-};

@@ -57,3 +57,8 @@
     color: #00474B;
     background-color: #9FE8DF;
 }
+@media(max-width:928px){
+    .div{
+        height: 280px;
+    }
+}

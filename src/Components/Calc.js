@@ -15,6 +15,7 @@ export const Calc = (props) => {
         setPercent={props.setPercent}
         percent={props.percent}
         bill={props.bill}
+        setCustom={props.setCustom}
       />
       <NumOfPeople people={props.people} setPeople={props.setPeople} />
     </div>
@@ -64,7 +65,22 @@ const Buttons = (props) => {
     );
   });
 
-  return <div className={calcCss.buttonsFlex}>{eachButton}</div>;
+  return (
+    <div>
+      <p className={calcCss.p}>Select Tip %</p>
+      <div className={calcCss.buttonsFlex}>
+        {eachButton}
+        <input
+          type="number"
+          className={calcCss.custom}
+          placeholder="Custom"
+          onChange={(e) => {
+            props.setCustom(e.target.valueAsNumber);
+          }}
+        />
+      </div>
+    </div>
+  );
 };
 
 const NumOfPeople = (props) => {
@@ -96,7 +112,7 @@ const ButtonsDiv = styled.div(
     height: 48px;
     background: ${props.active ? "#26C2AE" : "#00474B"};
     border-radius: 5px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: 0.3s ease;

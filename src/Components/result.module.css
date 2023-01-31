@@ -32,6 +32,7 @@
     text-align: right;
     letter-spacing: -1px;
     color: #26C2AE;
+    overflow: hidden;
 }
 .flexBox {
     width: 100%;

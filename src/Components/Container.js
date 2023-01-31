@@ -4,16 +4,22 @@ import { Calc } from "./Calc";
 import Result from "./Result";
 
 const Container = () => {
-  const [tip, setTip] = useState(0.0);
-  const [total, setTotal] = useState(0.0);
+  const [tip, setTip] = useState(0);
+  const [total, setTotal] = useState(0);
   const [bill, setBill] = useState(0);
   const [people, setPeople] = useState(0);
   const [percent, setPercent] = useState(0);
+  const [custom, setCustom] = useState(0);
 
   useEffect(() => {
-    setTotal((bill + tip) / people);
-    setTip((bill / 100) * percent);
-  }, [bill, people, tip, total]);
+    if (custom) {
+      setTotal((bill + tip) / people);
+      setTip((bill / 100) * custom);
+    } else {
+      setTotal((bill + tip) / people);
+      setTip((bill / 100) * percent);
+    }
+  }, [bill, people, tip, total, custom]);
 
   return (
     <ContainerDiv>
@@ -28,19 +34,10 @@ const Container = () => {
         setPeople={setPeople}
         percent={percent}
         setPercent={setPercent}
+        custom={custom}
+        setCustom={setCustom}
       />
-      <Result
-        tip={tip}
-        total={total}
-        setTip={setTip}
-        setTotal={setTotal}
-        bill={bill}
-        setBill={setBill}
-        people={people}
-        setPeople={setPeople}
-        percent={percent}
-        setPercent={setPercent}
-      />
+      <Result tip={tip} total={total} setTip={setTip} setTotal={setTotal} />
     </ContainerDiv>
   );
 };

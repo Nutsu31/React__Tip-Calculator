@@ -71,6 +71,7 @@ const Buttons = (props) => {
       <div className={calcCss.buttonsFlex}>
         {eachButton}
         <input
+          min={0}
           type="number"
           className={calcCss.custom}
           placeholder="Custom"

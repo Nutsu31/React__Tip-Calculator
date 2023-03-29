@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import resultCSS from "../Components/result.module.css";
 
 const Result = (props) => {
@@ -19,6 +19,10 @@ const Result = (props) => {
         <h1 className={resultCSS.h1}>${props.total}</h1>
       </div>
       <Reset
+        bill={props.bill}
+        setBill={props.setBill}
+        people={props.people}
+        setPeople={props.setPeople}
         tip={props.tip}
         total={props.total}
         setTip={props.setTip}
@@ -38,6 +42,8 @@ const Reset = (props) => {
         console.log(e.target);
         props.setTip(0);
         props.setTotal(0);
+        props.setBill();
+        props.setPeople(0);
       }}
     >
       Reset

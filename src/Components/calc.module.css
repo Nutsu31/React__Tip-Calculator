@@ -30,7 +30,7 @@
     text-align: right;
     color: #00474B;
     border: none;
-    outline: none;
+    outline-color: #9FE8DF;
     background-color: transparent;
 }
 
@@ -82,7 +82,7 @@
     border-radius: 5px;
     border: none;
     background-color: #F3F9FA;
-    outline: none;
+    outline-color: #9FE8DF;
     /* display: inline; */
     text-align: center;
 

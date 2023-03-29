@@ -37,7 +37,16 @@ const Container = () => {
         custom={custom}
         setCustom={setCustom}
       />
-      <Result tip={tip} total={total} setTip={setTip} setTotal={setTotal} />
+      <Result
+        tip={tip}
+        total={total}
+        setTip={setTip}
+        setTotal={setTotal}
+        bill={bill}
+        setBill={setBill}
+        people={people}
+        setPeople={setPeople}
+      />
     </ContainerDiv>
   );
 };
